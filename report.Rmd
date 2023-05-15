@@ -1,0 +1,36 @@
+---
+title: "Penguin report"
+author: "A. Uthor, B. Ready"
+date: "2023-05-15"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+library(here)
+library(tidyverse)
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Report
+The following is our first model for relation between penguins body mass and their culmen depth
+
+```{r}
+here("output/mod_depth.rds") |> 
+  read_rds() |> 
+  summary()
+```
+
+Such a simple model show a negative relation that could be misleading, as we can see adding the species as additional confounder.
+
+```{r, width="100%"}
+here("output/mod_depth_spec.rds") |> 
+  read_rds() |> 
+  summary()
+```
+
+As always, a picture is worth a thousand words!
+```{r}
+here("output/gg.png") |> 
+  knitr::include_graphics()
+```
+
